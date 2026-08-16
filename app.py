@@ -51,7 +51,7 @@ def download():
     if file_format == 'audio':
         ydl_opts = {
             'format': 'bestaudio/best',
-            'outtmpl': os.path.join(downloads_dir, '%(title)s.%(ext)s'),
+            'outtmpl': os.path.join(downloads_dir, '%(id)s.%(ext)s'),
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3',
@@ -61,7 +61,7 @@ def download():
     else:
         ydl_opts = {
             'format': 'best',
-            'outtmpl': os.path.join(downloads_dir, '%(title)s.%(ext)s'),
+            'outtmpl': os.path.join(downloads_dir, '%(id)s.%(ext)s'),
         }
 
     try:
@@ -77,4 +77,3 @@ def download():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
