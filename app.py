@@ -1,5 +1,27 @@
 from flask import Flask, render_template_string, request, send_file
 import yt_dlp
+    if file_format == 'audio':
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'outtmpl': os.path.join(downloads_dir, '%(id)s.%(ext)s'),
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            },
+        }
+    else:
+        ydl_opts = {
+            'format': 'best',
+            'outtmpl': os.path.join(downloads_dir, '%(id)s.%(ext)s'),
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            },
+        }
+
 import os
 
 app = Flask(__name__)
